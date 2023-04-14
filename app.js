@@ -30,7 +30,9 @@ app.use((request, response, next) => {
 })
 
 app.use((error, request, response, next) => {
+  console.log(error)
   if(error instanceof Error) error = errorProcessing(error)
+  console.log(error)
   const statusCode = parseInt((error.errorCode) ? error.errorCode : 500)
   const statusMessage = (error.errorMessage) ? error.errorMessage : { message: 'Internal Server Error' }
   response.status(statusCode).json(statusMessage)
