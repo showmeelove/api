@@ -1,12 +1,18 @@
 'use strict'
 
 const { errorHandling } = require('../../../core/debuggers')
+let emailValidator = require('email-validator-pro')
+let validator = new emailValidator()
+const doesEmailExist = require('does-email-exist')
 
 
 async function addToWaitlist(request, response, next){
   try {
 
-    errorHandling(`400|Please send email.|`)
+    console.log(validator.isValidAddress(request.body.email))
+
+    const checkEmail = await doesEmailExist.check(request.body.email)
+    console.log(checkEmail)
 
     response.status(200).send('Added')
     

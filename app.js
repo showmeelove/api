@@ -3,10 +3,19 @@ const { bootstrap } = require('./bootstrap')
 
 require('dotenv').config()
 
-const app = require('express')()
-const PORT = 8181 || process.env.PORT
+const express = require('express')
 
+const app = express()
+const PORT = 8181 || process.env.PORT
 const routes = require(`./src/${process.env.VERSION}/routes`)
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(`./src/${process.env.VERSION}/public`))
+
+
+
 
 bootstrap(app, routes, process.env.VERSION)
 
