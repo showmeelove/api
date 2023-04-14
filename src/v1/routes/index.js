@@ -1,8 +1,8 @@
-const getCurrentVersion = require('../controllers/version')
-
-const routes = require('express').Router
+const { addToWaitlist } = require('../controllers/waitlist')
 
 
-routes.route('version').get(getCurrentVersion)
+const routes = require('express').Router()
+
+routes.route('/waitlist').post(addToWaitlist)
 
 module.exports = routes
