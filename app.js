@@ -40,3 +40,6 @@ app.use((error, request, response, next) => {
 app.listen(PORT, connect_to_db(), () => {
   log(`App listening on port: ${PORT}`)
 })
+
+
+module.exports = app

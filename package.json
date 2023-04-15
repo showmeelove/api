@@ -5,13 +5,13 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "start:dev": "nodemon app.js"
+    "start:dev": "nodemon app.js",
+    "build": "echo 'no build required'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": "14.x",
     "vercel": "^22.0.0"
   },
   "dependencies": {
@@ -21,7 +21,8 @@
     "email-validator-pro": "^1.0.1",
     "express": "^4.18.2",
     "mongoose": "^7.0.3",
-    "nodemailer": "^6.9.1"
+    "nodemailer": "^6.9.1",
+    "now": "^21.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
