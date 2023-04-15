@@ -19,11 +19,8 @@ app.use(express.static(`./src/${process.env.VERSION}/public`))
 
 
 
-// bootstrap(app, routes, process.env.VERSION)
+bootstrap(app, routes, process.env.VERSION)
 
-app.get('/', (req, res) => {
-  res.send('Hello world')
-})
 
 
 app.use((request, response, next) => {
