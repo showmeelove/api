@@ -24,12 +24,14 @@ let transporter = nodemailer.createTransport({
 async function addToWaitlist(request, response, next){
   try {
 
+    if(!request.body.email) errorHandling(`400|Please enter email address.|`)
+
     let existingUser = await Waitlist.findOne({ email: request.body.email })
 
     if(existingUser != null) errorHandling(`400|Email already exists!.|`)
 
     let mailOptions = {
-      from: `${process.env.EMAIL_USERNAME}`,
+      from: `Showmeelove ${process.env.EMAIL_USERNAME}`,
       to: `${request.body.email}`,
       subject: ' Thank You for Joining the Waitlist for Showmeelove!',
       html: await getEmailTemplate({
@@ -45,7 +47,7 @@ async function addToWaitlist(request, response, next){
       
       transporter.sendMail(mailOptions, async function(error, info){
         if(error){
-            errorHandling(`502|An Error Occurred.|`)
+            errorHandling(`503|Service Unavailable.|`)
         }else{
 
             let user = new Waitlist({
