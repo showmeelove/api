@@ -10,6 +10,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "14.x",
+    "vercel": "^22.0.0"
+  },
   "dependencies": {
     "@vercel/node": "^2.10.3",
     "does-email-exist": "^0.2.0",
@@ -21,9 +25,5 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
-  },
-  "engines": {
-    "node": "14.x",
-    "vercel": "^22.0.0"
   }
 }
