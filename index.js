@@ -5,7 +5,6 @@ require('dotenv').config()
 
 const express = require('express')
 
-const serverless = require('serverless-http')
 
 const app = express()
 const PORT = 8181 || process.env.PORT
@@ -20,7 +19,11 @@ app.use(express.static(`./src/${process.env.VERSION}/public`))
 
 
 
-bootstrap(app, routes, process.env.VERSION)
+// bootstrap(app, routes, process.env.VERSION)
+
+app.get('/', (req, res) => {
+  res.send('Hello world')
+})
 
 
 app.use((request, response, next) => {
@@ -39,20 +42,10 @@ app.use((error, request, response, next) => {
   response.status(statusCode).json(statusMessage)
 })
 
-module.exports.handler = serverless(app);
 
-// or as a promise
-// const handler = serverless(app);
-// module.exports.handler = async (event, context) => {
-//   // you can do other things here
-//   const result = await handler(event, context);
-//   // and here
-//   return result;
-// };
-
-// app.listen(PORT, connect_to_db(), () => {
-//   log(`App listening on port: ${PORT}`)
-// })
+app.listen(PORT, connect_to_db(), () => {
+  log(`App listening on port: ${PORT}`)
+})
 
 
 // module.exports = app
