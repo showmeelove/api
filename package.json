@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vercel/node": "^2.10.3",
     "does-email-exist": "^0.2.0",
     "dotenv": "^16.0.3",
     "email-validator-pro": "^1.0.1",
