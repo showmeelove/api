@@ -13,8 +13,6 @@ const errorProcessing = (receivedErrorMessage) => {
 
   if(errorObject <= 1) logErrorToFile(receivedErrorMessage)
 
-  console.log(errorObject)
-
   return {
     errorCode: (errorObject > 1) ? errorMessage[0] : 500,
     errorMessage: {

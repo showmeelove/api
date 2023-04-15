@@ -8,6 +8,7 @@ const express = require('express')
 const app = express()
 const PORT = 8181 || process.env.PORT
 const routes = require(`./src/${process.env.VERSION}/routes`)
+const connect_to_db = require('./src/core/database')
 
 
 app.use(express.json());
@@ -30,14 +31,12 @@ app.use((request, response, next) => {
 })
 
 app.use((error, request, response, next) => {
-  console.log(error)
   if(error instanceof Error) error = errorProcessing(error)
-  console.log(error)
   const statusCode = parseInt((error.errorCode) ? error.errorCode : 500)
   const statusMessage = (error.errorMessage) ? error.errorMessage : { message: 'Internal Server Error' }
   response.status(statusCode).json(statusMessage)
 })
 
-app.listen(PORT, () => {
+app.listen(PORT, connect_to_db(), () => {
   log(`App listening on port: ${PORT}`)
 })
