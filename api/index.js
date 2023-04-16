@@ -1,4 +1,4 @@
-const { log, errorProcessing } = require('./src/core/debuggers')
+const { log, errorProcessing } = require('./core/debuggers.js')
 const { bootstrap } = require('./bootstrap')
 
 require('dotenv').config()
@@ -8,15 +8,17 @@ const express = require('express')
 
 const app = express()
 const PORT = 8181 || process.env.PORT
-const routes = require(`./src/${process.env.VERSION}/routes`)
-const connect_to_db = require('./src/core/database')
+const routes = require(`./${process.env.VERSION}/routes/index.js`)
+const connect_to_db = require('./core/database.js')
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(`./src/${process.env.VERSION}/public`))
+app.use(express.static(`./${process.env.VERSION}/public`))
 
 bootstrap(app, routes, process.env.VERSION)
+
+connect_to_db()
 
 app.use((request, response, next) => {
   next({
@@ -35,6 +37,8 @@ app.use((error, request, response, next) => {
 })
 
 
-app.listen(PORT, connect_to_db(), () => {
-  log(`App listening on port: ${PORT}`)
-})
+// app.listen(PORT, connect_to_db(), () => {
+//   log(`App listening on port: ${PORT}`)
+// })
+
+module.exports = app
