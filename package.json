@@ -16,6 +16,7 @@
     "dotenv": "^16.0.3",
     "email-validator-pro": "^1.0.1",
     "express": "^4.18.2",
+    "gulp": "^4.0.2",
     "mongoose": "^7.0.3",
     "nodemailer": "^6.9.1",
     "now": "^21.0.1",
