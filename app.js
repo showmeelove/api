@@ -16,12 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(`./src/${process.env.VERSION}/public`))
 
-
-
-
 bootstrap(app, routes, process.env.VERSION)
-
-
 
 app.use((request, response, next) => {
   next({
