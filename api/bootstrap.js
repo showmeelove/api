@@ -2,7 +2,7 @@
 
 const bootstrap = (router, routes, version) => {
 
-  router.use(`/api/${version}`, routes)
+  router.use(`/${version}`, routes)
 
   router.get('/', (request, response) => {
     response.status(200).json({ statusMessage: 'OK', statusCode: 200 })
