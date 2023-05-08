@@ -12,7 +12,7 @@ const PORT = 8181 || process.env.PORT
 const routes = require(`./${process.env.VERSION}/routes/index.js`)
 const connect_to_db = require('./core/database.js')
 
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(`./${process.env.VERSION}/public`))
