@@ -1,0 +1,271 @@
+tags:
+  - name: waitlist
+    description: Waitlist API
+  - name: auth
+    description: Auth API
+
+paths:
+  # [POST] waitlist
+  /waitlist:
+    post: 
+      tags:
+        - waitlist
+      summary: Add User to Waitlist
+      parameters:
+        - name: body
+          in: body
+          description: waitlist Data
+          required: true
+          schema:
+            $ref: "#/definitions/waitlist"
+      responses:
+        201:
+          description: "Created"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        404:
+          description: "Not Found"
+        500:
+          description: "Server Error"
+
+  # [POST] /auth/signup/step/1
+  /auth/signin:
+    post:
+      tags:
+        - auth
+      summary: User Sign in
+      parameters:
+        - name: body
+          in: body
+          description: Signin Data
+          required: true
+          schema:
+            $ref: "#/definitions/signin"
+      responses:
+        200:
+          description: "Accepted"
+        201:
+          description: "Created"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        404:
+          description: "Not Found"
+        500:
+          description: "Server Error"
+
+  # [POST] /auth/signup/step/1
+  /auth/signup/step/1:
+    post:
+      tags:
+        - auth
+      summary: Complete Signup Step 1
+      parameters:
+        - name: body
+          in: body
+          description: Signup Step 1 Data
+          required: true
+          schema:
+            $ref: "#/definitions/signupstep1"
+      responses:
+        200:
+          description: "Accepted"
+        201:
+          description: "Created"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        404:
+          description: "Not Found"
+        500:
+          description: "Server Error"
+
+  # [POST] /auth/signup/step/1
+  /auth/signup/step/2:
+    post:
+      tags:
+        - auth
+      summary: Complete Signup Step 2
+      parameters:
+        - name: body
+          in: body
+          description: Signup Step 2 Data
+          required: true
+          schema:
+            $ref: "#/definitions/signupstep2"
+      responses:
+        200:
+          description: "Accepted"
+        201:
+          description: "Created"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        404:
+          description: "Not Found"
+        500:
+          description: "Server Error"
+
+  # [POST] /auth/verifyemail
+  /auth/verifyemail:
+    post:
+      tags:
+        - auth
+      summary: Verify User Email
+      parameters:
+        - name: body
+          in: body
+          description: Verify Email Data
+          required: true
+          schema:
+            $ref: "#/definitions/verifyemail"
+      responses:
+        200:
+          description: "Accepted"
+        201:
+          description: "Created"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        404:
+          description: "Not Found"
+        500:
+          description: "Server Error"
+
+  # [POST] /auth/resendotp
+  /auth/resendotp:
+    post:
+      tags:
+        - auth
+      summary: Resend OTP to User Mail
+      parameters:
+        - name: body
+          in: body
+          description: Resend OTP Data
+          required: true
+          schema:
+            $ref: "#/definitions/resendotp"
+      responses:
+        200:
+          description: "Accepted"
+        201:
+          description: "Created"
+        400:
+          description: "Bad Request"
+        409:
+          description: "Conflict"
+        404:
+          description: "Not Found"
+        500:
+          description: "Server Error"
+
+# definitions
+definitions:
+  waitlist:
+    type: object
+    required:
+      - email
+    properties:
+      email: 
+        type: string
+        description: User Email
+
+  signin:
+    type: object
+    required:
+      - email
+      - password
+    properties:
+      email: 
+        type: string
+        description: User Email
+      password: 
+        type: string
+        description: User Password
+
+  signupstep1:
+    type: object
+    required:
+      - email
+      - password
+    properties:
+      email: 
+        type: string
+        description: User Email
+      password: 
+        type: string
+        description: User Password
+
+  signupstep2:
+    type: object
+    required:
+      - email
+      - name
+      - creatorLink
+    properties:
+      email: 
+        type: string
+        description: User Email
+      name: 
+        type: string
+        description: User Name
+      creatorLink: 
+        type: string
+        description: User Showmeelove link
+      socialLink: 
+        type: string
+        description: User Social link
+      bio:
+        type: string
+        description: User Bio 
+
+  verifyemail:
+    type: object
+    required:
+      - email
+      - otp
+    properties:
+      email: 
+        type: string
+        description: User Email
+      otp: 
+        type: string
+        description: OTP 
+
+  resendotp:
+    type: object
+    required:
+      - email
+    properties:
+      email: 
+        type: string
+        description: User Email
+
+schemes:
+  - https
+  - http
+
+
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+  oauth2:
+    type: oauth2
+    flow: accessCode
+    authorizationUrl: https://example.com/oauth2/authorize
+    tokenUrl: https://example.com/oauth2/token
+    scopes:
+      read: Grants read access
+      write: Grants write access
+  jwt:
+    type: apiKey
+    name: Authorization
+    in: header
