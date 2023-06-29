@@ -25,6 +25,8 @@
     "express-useragent": "^1.0.15",
     "geoip-lite": "^1.4.7",
     "gulp": "^4.0.2",
+    "helmet": "^7.0.0",
+    "hpp": "^0.2.3",
     "kleur": "^4.1.5",
     "moment": "^2.29.4",
     "mongoose": "^7.0.3",
@@ -41,6 +43,8 @@
   },
   "devDependencies": {
     "@types/argon2": "^0.15.0",
+    "@types/helmet": "^4.0.0",
+    "@types/hpp": "^0.2.2",
     "@types/moment": "^2.13.0",
     "@types/nodemailer": "^6.4.8",
     "@types/swagger-jsdoc": "^6.0.1",

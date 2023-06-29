@@ -9,6 +9,8 @@ import { MongoDatabase } from "./utils/database"
 
 import swaggerJSDoc from "swagger-jsdoc"
 import swaggerUi from "swagger-ui-express"
+import hpp from 'hpp'
+import helmet from 'helmet'
 
 
 export class App {
@@ -53,6 +55,9 @@ export class App {
     this.app.use(morgan('dev', { stream: logger.stream }));
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(helmet())
+    this.app.disable('x-powered-by')
+    this.app.use(hpp())
   }
 
   private initializeSwagger() {

@@ -22,10 +22,8 @@ class EmailService {
     this.transport = createTransport(options)
   }
 
-  public async sendMail(data: IEmailOptions, type: "waitlist" | "login" | "otp" | "email verification") {
+  public async sendMail(data: IEmailOptions, type: "waitlist" | "login" | "otp" | "email verification" | "signup") {
     let subject = ""
-
-    console.log('Here')
 
     switch(type){
       case 'waitlist':
@@ -39,6 +37,9 @@ class EmailService {
         break;
       case 'email verification':
         subject = "Your Email has been Verified!!"
+        break;
+      case 'signup':
+        subject = "Welcome to Showmeelove!!"
         break;
     }
 
